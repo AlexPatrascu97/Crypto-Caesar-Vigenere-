@@ -5,27 +5,66 @@ public class CaesarCipher {
     public CaesarCipher(){
     }
 
-    public StringBuffer encrypt(String text, int s)
+    public String encrypt(String message, int key)
     {
-        StringBuffer result= new StringBuffer();
 
-        for (int i=0; i<text.length(); i++)
-        {
-            if (Character.isUpperCase(text.charAt(i)))
-            {
-                char ch = (char)(((int)text.charAt(i) +
-                        s - 65) % 26 + 65);
-                result.append(ch);
+        String result= "";
+        for(int i = 0; i < message.length(); ++i){
+            char ch = message.charAt(i);
+
+            if(ch >= 'a' && ch <= 'z'){
+                ch = (char)(ch + key);
+
+                if(ch > 'z'){
+                    ch = (char)(ch - 'z' + 'a' - 1);
+                }
+
+                result += ch;
             }
-            else
-            {
-                char ch = (char)(((int)text.charAt(i) +
-                        s - 97) % 26 + 97);
-                result.append(ch);
+            else if(ch >= 'A' && ch <= 'Z'){
+                ch = (char)(ch + key);
+
+                if(ch > 'Z'){
+                    ch = (char)(ch - 'Z' + 'A' - 1);
+                }
+
+                result += ch;
+            }
+            else {
+                result += ch;
             }
         }
+
         return result;
 
     }
 
-} 
+    public String decrypt(String message, int key)
+    {
+        String result= "";
+        for(int i = 0; i < message.length(); ++i) {
+            char ch = message.charAt(i);
+
+            if (ch >= 'a' && ch <= 'z') {
+                ch = (char) (ch - key);
+
+                if (ch < 'a') {
+                    ch = (char) (ch + 'z' - 'a' + 1);
+                }
+
+                result += ch;
+            } else if (ch >= 'A' && ch <= 'Z') {
+                ch = (char) (ch - key);
+
+                if (ch < 'A') {
+                    ch = (char) (ch + 'Z' - 'A' + 1);
+                }
+
+                result += ch;
+            } else {
+                result += ch;
+            }
+        }
+        return result;
+    }
+}
