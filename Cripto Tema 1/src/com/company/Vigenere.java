@@ -19,7 +19,6 @@ public class Vigenere {
             EMessage += (char)(((letter - 65) + (Key.charAt(j)-65)) % 26 + 65);
             j = ++j % Key.length();
         }
-        System.out.println(EMessage);
         return EMessage;
     }
 

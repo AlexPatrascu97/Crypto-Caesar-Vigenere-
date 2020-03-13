@@ -1,5 +1,6 @@
 package com.company;
 import javax.swing.*;
+import java.awt.*;
 
 public class Main {
 
@@ -11,15 +12,23 @@ public class Main {
 
 	    CaesarCipher Cezar = new CaesarCipher();
 	    Vigenere Vig = new Vigenere();
-	    //String Text = "Every cloud has a silver lining";
-	   // String Key = "CRIPTOGRAFIE";
 
 	    //Codificare Utilizand Cifru Cezar
 	    String Text2 = Cezar.encrypt(Text,age).toString();
 
-	    //Codificare Utilizand Cifrul Vigenere
-	    Vig.encrypt(Text2,Key);
+        //Setare  GUI
+        JFrame f = new JFrame();
+        f.setPreferredSize(new Dimension(1200, 300));
+        f.pack();
+        f.setLocationRelativeTo(null);
+        JPanel p = new JPanel();
 
+        //Codificare Utilizand Cifrul Vigenere
+        JLabel l = new JLabel(Vig.encrypt(Text2,Key));
+
+        p.add(l);
+        f.add(p);
+        f.setVisible(true);
 
 
     }
